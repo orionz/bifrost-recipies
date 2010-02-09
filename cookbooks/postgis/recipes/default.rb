@@ -3,7 +3,7 @@
 # puts "make sure we have enough shmmax"
 # Rush.bash "echo #{shmmax} > /proc/sys/kernel/shmmax"
 
-memory = node[:memory][:shared].to_i * 1024
+memory = node[:memory][:total].to_i * 1024
 shared_memory = memory / 3
 current_shared_memory = File.read("/proc/sys/kernel/shmmax").to_i
 
