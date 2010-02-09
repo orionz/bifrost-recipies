@@ -1,7 +1,7 @@
 
 apt-get update
 apt-get upgrade -y
-apt-get install ruby irb rubygems ruby-dev git-core -y
+apt-get install ruby irb rubygems ruby-dev libopenssl-ruby git-core -y
 gem install rake chef ohai --no-rdoc --no-ri
 
 # git clone git://github.com/orionz/bifrost-recipies.git
