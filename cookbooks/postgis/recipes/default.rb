@@ -3,17 +3,9 @@
 # puts "make sure we have enough shmmax"
 # Rush.bash "echo #{shmmax} > /proc/sys/kernel/shmmax"
 
-def memory
-	node["memory"]["shared"].to_i * 1024
-end
-
-def shared_memory 
-	memory / 3
-end
-
-def current_shared_memory
-	File.read("/proc/sys/kernel/shmmax").to_i
-end
+memory = node["memory"]["shared"].to_i * 1024
+shared_memory = memory / 3
+current_shared_memory = File.read("/proc/sys/kernel/shmmax").to_i
 
 packages = %w(postgresql-8.4 postgresql-server-dev-8.4 libpq-dev libgeos-dev proj)
 
@@ -23,7 +15,7 @@ packages.each do |p|
 	end
 end
 
-service "postgresql"  do
+service "postgresql-8.4"  do
   supports :restart => true, :reload => true
   action :enable
 end
@@ -37,6 +29,6 @@ end
 template "/etc/postgresql/8.4/main/postgresql.conf" do
    source "postgresql.conf.erb"
    mode "0644"
-	notifies :restart, resources(:service => "postgresql")
+	notifies :restart, resources(:service => "postgresql-8.4")
 end
 
