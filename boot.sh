@@ -6,7 +6,7 @@ apt-get install git-core xfsprogs mdadm -y
 apt-get install postgresql-8.4 postgresql-server-dev-8.4 libpq-dev libgeos-dev proj -y
 /etc/init.d/postgresql-8.4 stop
 
-### all this does not is write the configuration file
+### all this does not is write the configuration file + install postgis.deb
 cd /tmp/
 git clone git://github.com/orionz/bifrost-recipies.git
 cd bifrost-recipies
@@ -25,7 +25,3 @@ mount -L /wal /wal
 
 /etc/init.d/postgresql-8.4 start
 
-#TODO: manually  mount drives
-#	mdadm --assemble /dev/md0 /dev/sde1 /dev/sde2
-#	mount -L /wal /wal
-#	mount -L /database /database
